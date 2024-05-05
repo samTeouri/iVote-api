@@ -18,9 +18,11 @@ export const app: Application = express();
             });
 })();
 
+// Parse requests body
 app.use(bodyParser.json({limit: '50mb', type: ['application/json', 'application/pdf']}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+// Authentication routes
 app.use('/auth', authRoutes.router);
 
 app.get('/', (req: Request, res: Response) => {
