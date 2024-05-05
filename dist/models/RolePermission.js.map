@@ -1,0 +1,1 @@
+{"version":3,"file":"RolePermission.js","sourceRoot":"","sources":["../../src/models/RolePermission.ts"],"names":[],"mappings":";;;AAAA,yCAAkC;AAClC,iDAA+C;AAE/C,MAAa,cAAe,SAAQ,iBAAK;CAAG;AAA5C,wCAA4C;AAE5C,cAAc,CAAC,IAAI,CAAC,EAAE,EAAE;IACpB,SAAS,EAAE,oBAAS;IACpB,SAAS,EAAE,gBAAgB;IAC3B,SAAS,EAAE,kBAAkB;CAChC,CAAC,CAAC"}
