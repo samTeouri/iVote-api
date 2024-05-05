@@ -17,15 +17,12 @@ export const register = async (req: Request, res: Response) => {
         }
 
         // Get user register form values from body
-        const { firstName, lastName, email, phone, address, password } = req.body;
+        const { email, phone, address, password } = req.body;
 
         // Create an instance of user
         const user = await User.build({
-            firstName: firstName,
-            lastName: lastName,
             email: email,
             phone: phone,
-            address: address,
             password: await bcrypt.hash(password, 15),
         });
 
