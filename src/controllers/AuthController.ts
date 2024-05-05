@@ -29,7 +29,7 @@ export const register = async (req: Request, res: Response) => {
             password: await bcrypt.hash(password, 15),
         });
 
-        const electorRole = await Role.findOne({ where: { name: 'elector' } });
+        const citizenRole = await Role.findOne({ where: { name: 'citizen' } });
 
         // Setting user id
         user.id = (await user.createId()).toString();
@@ -38,7 +38,7 @@ export const register = async (req: Request, res: Response) => {
         await user.save()
 
         // Set user citizen role
-        await user.addRole(electorRole as Role);
+        await user.addRole(citizenRole as Role);
 
         return res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
