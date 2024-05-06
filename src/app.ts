@@ -9,7 +9,7 @@ export const app: Application = express();
 (async () => {
     await database.connect();
 
-    await database.sequelize.sync({force: false})
+    await database.sequelize.sync({force: true})
             .then(() => {
                 console.log('Database synchronised successfully');
             })
@@ -26,5 +26,5 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use('/auth', authRoutes.router);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send("Hello World!");
+    res.send("Hello World!");
 });

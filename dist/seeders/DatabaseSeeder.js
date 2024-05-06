@@ -9,11 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const AgentElectoralSeeder_1 = require("./AgentElectoralSeeder");
+const BureauVoteSeeder_1 = require("./BureauVoteSeeder");
+const CarteElecteurSeeder_1 = require("./CarteElecteurSeeder");
+const CitoyenSeeder_1 = require("./CitoyenSeeder");
+const PrefectureSeeder_1 = require("./PrefectureSeeder");
+const RegionSeeder_1 = require("./RegionSeeder");
 const RoleSeeder_1 = require("./RoleSeeder");
 const UserSeeder_1 = require("./UserSeeder");
-const seed = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, RoleSeeder_1.seedRoles)(),
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield (0, RoleSeeder_1.seedRoles)();
         yield (0, UserSeeder_1.seedUsers)();
-});
-seed();
+        yield (0, RegionSeeder_1.seedRegions)();
+        yield (0, PrefectureSeeder_1.seedPrefectures)();
+        yield (0, BureauVoteSeeder_1.seedBureauxVote)();
+        yield (0, CitoyenSeeder_1.seedCitoyens)();
+        yield (0, AgentElectoralSeeder_1.seedAgentsElectoraux)();
+        yield (0, CarteElecteurSeeder_1.seedCartesElecteurs)();
+    }
+    catch (error) {
+        console.error(`Error while seeding database: ${error}`);
+    }
+}))();
 //# sourceMappingURL=DatabaseSeeder.js.map

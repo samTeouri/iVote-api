@@ -2,7 +2,6 @@ import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, Be
 import { sequelize } from "../config/database";
 import { Prefecture } from "./Prefecture";
 import { BureauVote } from "./BureauVote";
-import { Citoyen } from "./Citoyen";
 
 export class Commune extends Model {
     declare id: BigInteger;
@@ -13,16 +12,6 @@ export class Commune extends Model {
     declare getPrefecture: HasOneGetAssociationMixin<Prefecture>;
     declare setPrefecture: HasOneSetAssociationMixin<Prefecture, number>;
     declare createPrefecture: HasOneCreateAssociationMixin<Prefecture>;
-
-    declare getCitoyen: BelongsToManyGetAssociationsMixin<Citoyen>;
-    declare setCitoyens: BelongsToManySetAssociationsMixin<Citoyen, number>;
-    declare hasCitoyen: BelongsToManyHasAssociationMixin<Citoyen, number>;
-    declare hasCitoyens: BelongsToManyHasAssociationsMixin<Citoyen, number>;
-    declare addCitoyen: BelongsToManyAddAssociationMixin<Citoyen, number>;
-    declare addCitoyens: BelongsToManyAddAssociationsMixin<Citoyen, number>;
-    declare removeCitoyen: BelongsToManyRemoveAssociationMixin<Citoyen, number>;
-    declare removeCitoyens: BelongsToManyRemoveAssociationsMixin<Citoyen, number>;
-    declare createCitoyen: BelongsToManyCreateAssociationMixin<Citoyen>;
     
     declare getBureauVote: BelongsToManyGetAssociationsMixin<BureauVote>;
     declare setBureauVotes: BelongsToManySetAssociationsMixin<BureauVote, number>;

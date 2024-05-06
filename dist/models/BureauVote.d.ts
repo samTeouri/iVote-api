@@ -1,6 +1,6 @@
 import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
-import { CarteElecteur } from "./CarteElecteur";
 import { Commune } from "./Commune";
+import { Citoyen } from "./Citoyen";
 export declare class BureauVote extends Model {
     id: BigInteger;
     nom: string;
@@ -9,13 +9,13 @@ export declare class BureauVote extends Model {
     getCommune: HasOneGetAssociationMixin<Commune>;
     setCommune: HasOneSetAssociationMixin<Commune, number>;
     createCommune: HasOneCreateAssociationMixin<Commune>;
-    getCarteElecteurs: BelongsToManyGetAssociationsMixin<CarteElecteur>;
-    setCarteElecteurs: BelongsToManySetAssociationsMixin<CarteElecteur, number>;
-    hasCarteElecteur: BelongsToManyHasAssociationMixin<CarteElecteur, number>;
-    hasCarteElecteurs: BelongsToManyHasAssociationsMixin<CarteElecteur, number>;
-    addCarteElecteur: BelongsToManyAddAssociationMixin<CarteElecteur, number>;
-    addCarteElecteurs: BelongsToManyAddAssociationsMixin<CarteElecteur, number>;
-    removeCarteElecteur: BelongsToManyRemoveAssociationMixin<CarteElecteur, number>;
-    removeCarteElecteurs: BelongsToManyRemoveAssociationsMixin<CarteElecteur, number>;
-    createCarteElecteur: BelongsToManyCreateAssociationMixin<CarteElecteur>;
+    getCitoyen: BelongsToManyGetAssociationsMixin<Citoyen>;
+    setCitoyens: BelongsToManySetAssociationsMixin<Citoyen, number>;
+    hasCitoyen: BelongsToManyHasAssociationMixin<Citoyen, number>;
+    hasCitoyens: BelongsToManyHasAssociationsMixin<Citoyen, number>;
+    addCitoyen: BelongsToManyAddAssociationMixin<Citoyen, number>;
+    addCitoyens: BelongsToManyAddAssociationsMixin<Citoyen, number>;
+    removeCitoyen: BelongsToManyRemoveAssociationMixin<Citoyen, number>;
+    removeCitoyens: BelongsToManyRemoveAssociationsMixin<Citoyen, number>;
+    createCitoyen: BelongsToManyCreateAssociationMixin<Citoyen>;
 }

@@ -6,16 +6,13 @@ import { BureauVote } from "./BureauVote";
 export class CarteElecteur extends Model {
     declare id: BigInteger;
     declare numero: string;
+    declare estActive: boolean;
     declare createdAt: Date;
     declare upadtedAt: Date;
 
     declare getUser: HasOneGetAssociationMixin<User>;
     declare setUser: HasOneSetAssociationMixin<User, number>;
     declare createUser: HasOneCreateAssociationMixin<User>;
-
-    declare getBureauVote: HasOneGetAssociationMixin<BureauVote>;
-    declare setBureauVote: HasOneSetAssociationMixin<BureauVote, number>;
-    declare createBureauVote: HasOneCreateAssociationMixin<BureauVote>;
 
     declare getCarteElecteur: HasOneGetAssociationMixin<CarteElecteur>;
     declare setCarteElecteur: HasOneSetAssociationMixin<CarteElecteur, number>;
@@ -32,6 +29,10 @@ CarteElecteur.init(
         numero: {
             type: DataTypes.STRING,
             unique: true,
+        },
+        estActive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
         createdAt: {
             type: DataTypes.DATE,

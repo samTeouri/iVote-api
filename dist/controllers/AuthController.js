@@ -48,7 +48,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(400).json({ errors: errors.array() });
         }
         // Get user register form values from body
-        const { email, phone, address, password } = req.body;
+        const { email, phone, password } = req.body;
         // Create an instance of user
         const user = yield User_1.User.build({
             email: email,

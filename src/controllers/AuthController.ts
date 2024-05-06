@@ -17,7 +17,7 @@ export const register = async (req: Request, res: Response) => {
         }
 
         // Get user register form values from body
-        const { email, phone, address, password } = req.body;
+        const { email, phone, password } = req.body;
 
         // Create an instance of user
         const user = await User.build({

@@ -43,7 +43,7 @@ const authRoutes = __importStar(require("./routes/AuthRoutes"));
 exports.app = (0, express_1.default)();
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield database.connect();
-    yield database.sequelize.sync({ force: false })
+    yield database.sequelize.sync({ force: true })
         .then(() => {
         console.log('Database synchronised successfully');
     })

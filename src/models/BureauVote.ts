@@ -2,6 +2,7 @@ import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, Be
 import { sequelize } from "../config/database";
 import { CarteElecteur } from "./CarteElecteur";
 import { Commune } from "./Commune";
+import { Citoyen } from "./Citoyen";
 
 export class BureauVote extends Model {
     declare id: BigInteger;
@@ -13,15 +14,15 @@ export class BureauVote extends Model {
     declare setCommune: HasOneSetAssociationMixin<Commune, number>;
     declare createCommune: HasOneCreateAssociationMixin<Commune>;
 
-    declare getCarteElecteurs: BelongsToManyGetAssociationsMixin<CarteElecteur>;
-    declare setCarteElecteurs: BelongsToManySetAssociationsMixin<CarteElecteur, number>;
-    declare hasCarteElecteur: BelongsToManyHasAssociationMixin<CarteElecteur, number>;
-    declare hasCarteElecteurs: BelongsToManyHasAssociationsMixin<CarteElecteur, number>;
-    declare addCarteElecteur: BelongsToManyAddAssociationMixin<CarteElecteur, number>;
-    declare addCarteElecteurs: BelongsToManyAddAssociationsMixin<CarteElecteur, number>;
-    declare removeCarteElecteur: BelongsToManyRemoveAssociationMixin<CarteElecteur, number>;
-    declare removeCarteElecteurs: BelongsToManyRemoveAssociationsMixin<CarteElecteur, number>;
-    declare createCarteElecteur: BelongsToManyCreateAssociationMixin<CarteElecteur>;
+    declare getCitoyen: BelongsToManyGetAssociationsMixin<Citoyen>;
+    declare setCitoyens: BelongsToManySetAssociationsMixin<Citoyen, number>;
+    declare hasCitoyen: BelongsToManyHasAssociationMixin<Citoyen, number>;
+    declare hasCitoyens: BelongsToManyHasAssociationsMixin<Citoyen, number>;
+    declare addCitoyen: BelongsToManyAddAssociationMixin<Citoyen, number>;
+    declare addCitoyens: BelongsToManyAddAssociationsMixin<Citoyen, number>;
+    declare removeCitoyen: BelongsToManyRemoveAssociationMixin<Citoyen, number>;
+    declare removeCitoyens: BelongsToManyRemoveAssociationsMixin<Citoyen, number>;
+    declare createCitoyen: BelongsToManyCreateAssociationMixin<Citoyen>;
 }
 
 BureauVote.init(

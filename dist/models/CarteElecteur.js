@@ -16,6 +16,10 @@ CarteElecteur.init({
         type: sequelize_1.DataTypes.STRING,
         unique: true,
     },
+    estActive: {
+        type: sequelize_1.DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
         defaultValue: sequelize_1.DataTypes.NOW

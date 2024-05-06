@@ -18,10 +18,6 @@ export class Citoyen extends Model {
     declare setUser: HasOneSetAssociationMixin<User, number>;
     declare createUser: HasOneCreateAssociationMixin<User>;
 
-    declare getCommune: HasOneGetAssociationMixin<Commune>;
-    declare setCommune: HasOneSetAssociationMixin<Commune, number>;
-    declare createCommune: HasOneCreateAssociationMixin<Commune>;
-
     declare getAgentElectoral: HasOneGetAssociationMixin<AgentElectoral>;
     declare setAgentElectoral: HasOneSetAssociationMixin<AgentElectoral, number>;
     declare createAgentElectoral: HasOneCreateAssociationMixin<AgentElectoral>;
