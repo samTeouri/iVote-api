@@ -2,6 +2,7 @@ import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, Be
 import { User } from './User';
 import { Permission } from './Permission';
 export declare class Role extends Model {
+    id: BigInteger;
     name: string;
     createdAt: Date;
     updatedAt: Date;

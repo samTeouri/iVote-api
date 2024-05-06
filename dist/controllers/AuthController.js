@@ -48,23 +48,18 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(400).json({ errors: errors.array() });
         }
         // Get user register form values from body
-        const { firstName, lastName, email, phone, address, password } = req.body;
+        const { email, phone, address, password } = req.body;
         // Create an instance of user
         const user = yield User_1.User.build({
-            firstName: firstName,
-            lastName: lastName,
             email: email,
             phone: phone,
-            address: address,
             password: yield bcrypt.hash(password, 15),
         });
-        const electorRole = yield Role_1.Role.findOne({ where: { name: 'elector' } });
-        // Setting user id
-        user.id = (yield user.createId()).toString();
+        const citizenRole = yield Role_1.Role.findOne({ where: { name: 'citizen' } });
         // Store user in database
         yield user.save();
         // Set user citizen role
-        yield user.addRole(electorRole);
+        yield user.addRole(citizenRole);
         return res.status(201).json({ message: 'User registered successfully' });
     }
     catch (error) {

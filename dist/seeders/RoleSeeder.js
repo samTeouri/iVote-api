@@ -13,7 +13,7 @@ exports.seedRoles = void 0;
 const Role_1 = require("../models/Role");
 const seedRoles = () => __awaiter(void 0, void 0, void 0, function* () {
     yield Role_1.Role.bulkCreate([
-        { name: 'elector' },
+        { name: 'citizen' },
         { name: 'electoral agent' },
         { name: 'manager' },
     ]);

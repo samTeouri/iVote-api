@@ -51,8 +51,10 @@ exports.app = (0, express_1.default)();
         console.error(`Database synchronisation failed : ${error}`);
     });
 }))();
+// Parse requests body
 exports.app.use(bodyParser.json({ limit: '50mb', type: ['application/json', 'application/pdf'] }));
 exports.app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+// Authentication routes
 exports.app.use('/auth', authRoutes.router);
 exports.app.get('/', (req, res) => {
     res.send("Hello World!");

@@ -6,6 +6,7 @@ import { Permission } from './Permission';
 import { RolePermission } from './RolePermission';
 
 export class Role extends Model {
+    declare id: BigInteger;
     declare name: string;
     declare createdAt: Date;
     declare updatedAt: Date;
@@ -33,6 +34,11 @@ export class Role extends Model {
 
 Role.init(
     {
+        id: {
+            type: DataTypes.BIGINT,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,

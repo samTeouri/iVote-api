@@ -1,30 +1,40 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Citoyen = void 0;
 const sequelize_1 = require("sequelize");
 const database_1 = require("../config/database");
-class User extends sequelize_1.Model {
+class Citoyen extends sequelize_1.Model {
 }
-exports.User = User;
-User.init({
+exports.Citoyen = Citoyen;
+Citoyen.init({
     id: {
         type: sequelize_1.DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
     },
-    phone: {
-        type: sequelize_1.DataTypes.BIGINT,
-        allowNull: true,
-        unique: true,
-    },
-    email: {
+    nom: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
+    },
+    prenom: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
+    },
+    nom_pere: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
+    },
+    nom_mere: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true,
+    },
+    cni: {
+        type: sequelize_1.DataTypes.STRING,
         unique: true,
     },
-    password: {
+    photo: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+        unique: true,
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -36,7 +46,7 @@ User.init({
     }
 }, {
     sequelize: database_1.sequelize,
-    modelName: 'User',
-    tableName: 'users',
+    modelName: 'Citoyen',
+    tableName: 'citoyens',
 });
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=Citoyen.js.map

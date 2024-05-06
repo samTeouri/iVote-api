@@ -28,9 +28,6 @@ export const register = async (req: Request, res: Response) => {
 
         const citizenRole = await Role.findOne({ where: { name: 'citizen' } });
 
-        // Setting user id
-        user.id = (await user.createId()).toString();
-
         // Store user in database
         await user.save()
 

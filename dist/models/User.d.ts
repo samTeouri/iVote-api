@@ -1,15 +1,16 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, Model } from "sequelize";
+import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { Role } from "./Role";
+import { Citoyen } from "./Citoyen";
 export declare class User extends Model {
-    id: string;
-    firstName: string;
-    lastName: string;
+    id: BigInteger;
     phone: BigInteger;
     email: string;
-    address: string;
     password: string;
     createdAt: Date;
     upadtedAt: Date;
+    getCitoyen: HasOneGetAssociationMixin<Citoyen>;
+    setCitoyen: HasOneSetAssociationMixin<Citoyen, number>;
+    createCitoyen: HasOneCreateAssociationMixin<Citoyen>;
     getRoles: BelongsToManyGetAssociationsMixin<Role>;
     setRoles: BelongsToManySetAssociationsMixin<Role, number>;
     hasRole: BelongsToManyHasAssociationMixin<Role, number>;
@@ -19,5 +20,4 @@ export declare class User extends Model {
     removeRole: BelongsToManyRemoveAssociationMixin<Role, number>;
     removeRoles: BelongsToManyRemoveAssociationsMixin<Role, number>;
     createRole: BelongsToManyCreateAssociationMixin<Role>;
-    createId(): Promise<string>;
 }

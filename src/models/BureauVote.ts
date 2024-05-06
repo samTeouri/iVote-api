@@ -1,17 +1,17 @@
 import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { sequelize } from "../config/database";
-import { User } from "./User";
 import { CarteElecteur } from "./CarteElecteur";
+import { Commune } from "./Commune";
 
-export class AgentElectoral extends Model {
+export class BureauVote extends Model {
     declare id: BigInteger;
-    declare numeroAgent: string;
+    declare nom: string;
     declare createdAt: Date;
     declare upadtedAt: Date;
 
-    declare getUser: HasOneGetAssociationMixin<User>;
-    declare setUser: HasOneSetAssociationMixin<User, number>;
-    declare createUser: HasOneCreateAssociationMixin<User>;
+    declare getCommune: HasOneGetAssociationMixin<Commune>;
+    declare setCommune: HasOneSetAssociationMixin<Commune, number>;
+    declare createCommune: HasOneCreateAssociationMixin<Commune>;
 
     declare getCarteElecteurs: BelongsToManyGetAssociationsMixin<CarteElecteur>;
     declare setCarteElecteurs: BelongsToManySetAssociationsMixin<CarteElecteur, number>;
@@ -24,16 +24,15 @@ export class AgentElectoral extends Model {
     declare createCarteElecteur: BelongsToManyCreateAssociationMixin<CarteElecteur>;
 }
 
-AgentElectoral.init(
+BureauVote.init(
     {
         id: {
             type: DataTypes.BIGINT,
             primaryKey: true,
             autoIncrement: true,
         },
-        numeroAgent: {
+        nom: {
             type: DataTypes.STRING,
-            unique: true,
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -46,7 +45,7 @@ AgentElectoral.init(
     },
     {
         sequelize: sequelize,
-        modelName: 'AgentElectoral',
-        tableName: 'agents_electoraux',
+        modelName: 'BureauVote',
+        tableName: 'bureaux_vote',
     },
 )

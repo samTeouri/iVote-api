@@ -1,6 +1,7 @@
 import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, Model } from "sequelize";
 import { Role } from "./Role";
 export declare class Permission extends Model {
+    id: BigInteger;
     name: string;
     createdAt: Date;
     updatedAt: Date;

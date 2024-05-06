@@ -3,6 +3,7 @@ import { sequelize } from "../config/database";
 import { Role } from "./Role";
 
 export class Permission extends Model {
+    declare id: BigInteger;
     declare name: string;
     declare createdAt: Date;
     declare updatedAt: Date;
@@ -20,6 +21,11 @@ export class Permission extends Model {
 
 Permission.init(
     {
+        id: {
+            type: DataTypes.BIGINT,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,

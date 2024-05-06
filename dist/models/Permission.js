@@ -7,6 +7,11 @@ class Permission extends sequelize_1.Model {
 }
 exports.Permission = Permission;
 Permission.init({
+    id: {
+        type: sequelize_1.DataTypes.BIGINT,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     name: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
