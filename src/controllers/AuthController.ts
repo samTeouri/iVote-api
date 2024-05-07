@@ -17,10 +17,10 @@ export const register = async (req: Request, res: Response) => {
         }
 
         // Get user register form values from body
-        const { email, phone, password } = req.body;
+        const { email, phone, password, cni, photo, dateNaissance, lieuNaissance, profession } = req.body;
 
         // Create an instance of user
-        const user = await User.build({
+        const user = await User.create({
             email: email,
             phone: phone,
             password: await bcrypt.hash(password, 15),
@@ -28,11 +28,10 @@ export const register = async (req: Request, res: Response) => {
 
         const citizenRole = await Role.findOne({ where: { name: 'citizen' } });
 
-        // Store user in database
-        await user.save()
-
         // Set user citizen role
         await user.addRole(citizenRole as Role);
+
+        // Create Citizen instance
 
         return res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -67,7 +66,7 @@ export const login = async (req: Request, res: Response) => {
             }
 
             // Token signature
-            const token = jwt.sign({ userId: user.id }, process.env.TOKEN_SECRET_KEY as string);
+            const token = jwt.sign({ user: user }, process.env.TOKEN_SECRET_KEY as string);
 
             return res.status(200).json({
                 user: user,

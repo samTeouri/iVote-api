@@ -1,4 +1,4 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { Prefecture } from "./Prefecture";
 import { BureauVote } from "./BureauVote";
 export declare class Commune extends Model {
@@ -9,13 +9,13 @@ export declare class Commune extends Model {
     getPrefecture: HasOneGetAssociationMixin<Prefecture>;
     setPrefecture: HasOneSetAssociationMixin<Prefecture, number>;
     createPrefecture: HasOneCreateAssociationMixin<Prefecture>;
-    getBureauVote: BelongsToManyGetAssociationsMixin<BureauVote>;
-    setBureauVotes: BelongsToManySetAssociationsMixin<BureauVote, number>;
-    hasBureauVote: BelongsToManyHasAssociationMixin<BureauVote, number>;
-    hasBureauVotes: BelongsToManyHasAssociationsMixin<BureauVote, number>;
-    addBureauVote: BelongsToManyAddAssociationMixin<BureauVote, number>;
-    addBureauVotes: BelongsToManyAddAssociationsMixin<BureauVote, number>;
-    removeBureauVote: BelongsToManyRemoveAssociationMixin<BureauVote, number>;
-    removeBureauVotes: BelongsToManyRemoveAssociationsMixin<BureauVote, number>;
-    createBureauVote: BelongsToManyCreateAssociationMixin<BureauVote>;
+    getBureauVote: HasManyGetAssociationsMixin<BureauVote>;
+    setBureauVotes: HasManySetAssociationsMixin<BureauVote, number>;
+    hasBureauVote: HasManyHasAssociationMixin<BureauVote, number>;
+    hasBureauVotes: HasManyHasAssociationsMixin<BureauVote, number>;
+    addBureauVote: HasManyAddAssociationMixin<BureauVote, number>;
+    addBureauVotes: HasManyAddAssociationsMixin<BureauVote, number>;
+    removeBureauVote: HasManyRemoveAssociationMixin<BureauVote, number>;
+    removeBureauVotes: HasManyRemoveAssociationsMixin<BureauVote, number>;
+    createBureauVote: HasManyCreateAssociationMixin<BureauVote>;
 }

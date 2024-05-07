@@ -1,6 +1,7 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { Commune } from "./Commune";
 import { Citoyen } from "./Citoyen";
+import { AgentElectoral } from "./AgentElectoral";
 export declare class BureauVote extends Model {
     id: BigInteger;
     nom: string;
@@ -9,13 +10,22 @@ export declare class BureauVote extends Model {
     getCommune: HasOneGetAssociationMixin<Commune>;
     setCommune: HasOneSetAssociationMixin<Commune, number>;
     createCommune: HasOneCreateAssociationMixin<Commune>;
-    getCitoyen: BelongsToManyGetAssociationsMixin<Citoyen>;
-    setCitoyens: BelongsToManySetAssociationsMixin<Citoyen, number>;
-    hasCitoyen: BelongsToManyHasAssociationMixin<Citoyen, number>;
-    hasCitoyens: BelongsToManyHasAssociationsMixin<Citoyen, number>;
-    addCitoyen: BelongsToManyAddAssociationMixin<Citoyen, number>;
-    addCitoyens: BelongsToManyAddAssociationsMixin<Citoyen, number>;
-    removeCitoyen: BelongsToManyRemoveAssociationMixin<Citoyen, number>;
-    removeCitoyens: BelongsToManyRemoveAssociationsMixin<Citoyen, number>;
-    createCitoyen: BelongsToManyCreateAssociationMixin<Citoyen>;
+    getCitoyen: HasManyGetAssociationsMixin<Citoyen>;
+    setCitoyens: HasManySetAssociationsMixin<Citoyen, number>;
+    hasCitoyen: HasManyHasAssociationMixin<Citoyen, number>;
+    hasCitoyens: HasManyHasAssociationsMixin<Citoyen, number>;
+    addCitoyen: HasManyAddAssociationMixin<Citoyen, number>;
+    addCitoyens: HasManyAddAssociationsMixin<Citoyen, number>;
+    removeCitoyen: HasManyRemoveAssociationMixin<Citoyen, number>;
+    removeCitoyens: HasManyRemoveAssociationsMixin<Citoyen, number>;
+    createCitoyen: HasManyCreateAssociationMixin<Citoyen>;
+    getAgentElectoral: HasManyGetAssociationsMixin<AgentElectoral>;
+    setAgentElectoraux: HasManySetAssociationsMixin<AgentElectoral, number>;
+    hasAgentElectoral: HasManyHasAssociationMixin<AgentElectoral, number>;
+    hasAgentElectoraux: HasManyHasAssociationsMixin<AgentElectoral, number>;
+    addAgentElectoral: HasManyAddAssociationMixin<AgentElectoral, number>;
+    addAgentElectoraux: HasManyAddAssociationsMixin<AgentElectoral, number>;
+    removeAgentElectoral: HasManyRemoveAssociationMixin<AgentElectoral, number>;
+    removeAgentElectoraux: HasManyRemoveAssociationsMixin<AgentElectoral, number>;
+    createAgentElectoral: HasManyCreateAssociationMixin<AgentElectoral>;
 }

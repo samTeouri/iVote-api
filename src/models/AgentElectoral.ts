@@ -1,7 +1,8 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { sequelize } from "../config/database";
-import { User } from "./User";
+import { Citoyen } from "./Citoyen";
 import { CarteElecteur } from "./CarteElecteur";
+import { BureauVote } from "./BureauVote";
 
 export class AgentElectoral extends Model {
     declare id: BigInteger;
@@ -9,19 +10,23 @@ export class AgentElectoral extends Model {
     declare createdAt: Date;
     declare upadtedAt: Date;
 
-    declare getUser: HasOneGetAssociationMixin<User>;
-    declare setUser: HasOneSetAssociationMixin<User, number>;
-    declare createUser: HasOneCreateAssociationMixin<User>;
+    declare getCitoyen: HasOneGetAssociationMixin<Citoyen>;
+    declare setCitoyen: HasOneSetAssociationMixin<Citoyen, number>;
+    declare createCitoyen: HasOneCreateAssociationMixin<Citoyen>;
 
-    declare getCarteElecteurs: BelongsToManyGetAssociationsMixin<CarteElecteur>;
-    declare setCarteElecteurs: BelongsToManySetAssociationsMixin<CarteElecteur, number>;
-    declare hasCarteElecteur: BelongsToManyHasAssociationMixin<CarteElecteur, number>;
-    declare hasCarteElecteurs: BelongsToManyHasAssociationsMixin<CarteElecteur, number>;
-    declare addCarteElecteur: BelongsToManyAddAssociationMixin<CarteElecteur, number>;
-    declare addCarteElecteurs: BelongsToManyAddAssociationsMixin<CarteElecteur, number>;
-    declare removeCarteElecteur: BelongsToManyRemoveAssociationMixin<CarteElecteur, number>;
-    declare removeCarteElecteurs: BelongsToManyRemoveAssociationsMixin<CarteElecteur, number>;
-    declare createCarteElecteur: BelongsToManyCreateAssociationMixin<CarteElecteur>;
+    declare getBureauVote: HasOneGetAssociationMixin<BureauVote>;
+    declare setBureauVote: HasOneSetAssociationMixin<BureauVote, number>;
+    declare createBureauVote: HasOneCreateAssociationMixin<BureauVote>;
+
+    declare getCarteElecteurs: HasManyGetAssociationsMixin<CarteElecteur>;
+    declare setCarteElecteurs: HasManySetAssociationsMixin<CarteElecteur, number>;
+    declare hasCarteElecteur: HasManyHasAssociationMixin<CarteElecteur, number>;
+    declare hasCarteElecteurs: HasManyHasAssociationsMixin<CarteElecteur, number>;
+    declare addCarteElecteur: HasManyAddAssociationMixin<CarteElecteur, number>;
+    declare addCarteElecteurs: HasManyAddAssociationsMixin<CarteElecteur, number>;
+    declare removeCarteElecteur: HasManyRemoveAssociationMixin<CarteElecteur, number>;
+    declare removeCarteElecteurs: HasManyRemoveAssociationsMixin<CarteElecteur, number>;
+    declare createCarteElecteur: HasManyCreateAssociationMixin<CarteElecteur>;
 }
 
 AgentElectoral.init(

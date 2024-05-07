@@ -1,4 +1,4 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { sequelize } from "../config/database";
 import { Role } from "./Role";
 import { CarteElecteur } from "./CarteElecteur";
@@ -16,15 +16,15 @@ export class User extends Model {
     declare setCitoyen: HasOneSetAssociationMixin<Citoyen, number>;
     declare createCitoyen: HasOneCreateAssociationMixin<Citoyen>;
 
-    declare getRoles: BelongsToManyGetAssociationsMixin<Role>;
-    declare setRoles: BelongsToManySetAssociationsMixin<Role, number>;
-    declare hasRole: BelongsToManyHasAssociationMixin<Role, number>;
-    declare hasRoles: BelongsToManyHasAssociationsMixin<Role, number>;
-    declare addRole: BelongsToManyAddAssociationMixin<Role, number>;
-    declare addRoles: BelongsToManyAddAssociationsMixin<Role, number>;
-    declare removeRole: BelongsToManyRemoveAssociationMixin<Role, number>;
-    declare removeRoles: BelongsToManyRemoveAssociationsMixin<Role, number>;
-    declare createRole: BelongsToManyCreateAssociationMixin<Role>;
+    declare getRoles: HasManyGetAssociationsMixin<Role>;
+    declare setRoles: HasManySetAssociationsMixin<Role, number>;
+    declare hasRole: HasManyHasAssociationMixin<Role, number>;
+    declare hasRoles: HasManyHasAssociationsMixin<Role, number>;
+    declare addRole: HasManyAddAssociationMixin<Role, number>;
+    declare addRoles: HasManyAddAssociationsMixin<Role, number>;
+    declare removeRole: HasManyRemoveAssociationMixin<Role, number>;
+    declare removeRoles: HasManyRemoveAssociationsMixin<Role, number>;
+    declare createRole: HasManyCreateAssociationMixin<Role>;
 }
 
 User.init(

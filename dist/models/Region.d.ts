@@ -1,17 +1,17 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, Model } from "sequelize";
 import { Prefecture } from "./Prefecture";
 export declare class Region extends Model {
     id: BigInteger;
     nom: string;
     createdAt: Date;
     upadtedAt: Date;
-    getPrefecture: BelongsToManyGetAssociationsMixin<Prefecture>;
-    setPrefectures: BelongsToManySetAssociationsMixin<Prefecture, number>;
-    hasPrefecture: BelongsToManyHasAssociationMixin<Prefecture, number>;
-    hasPrefectures: BelongsToManyHasAssociationsMixin<Prefecture, number>;
-    addPrefecture: BelongsToManyAddAssociationMixin<Prefecture, number>;
-    addPrefectures: BelongsToManyAddAssociationsMixin<Prefecture, number>;
-    removePrefecture: BelongsToManyRemoveAssociationMixin<Prefecture, number>;
-    removePrefectures: BelongsToManyRemoveAssociationsMixin<Prefecture, number>;
-    createPrefecture: BelongsToManyCreateAssociationMixin<Prefecture>;
+    getPrefecture: HasManyGetAssociationsMixin<Prefecture>;
+    setPrefectures: HasManySetAssociationsMixin<Prefecture, number>;
+    hasPrefecture: HasManyHasAssociationMixin<Prefecture, number>;
+    hasPrefectures: HasManyHasAssociationsMixin<Prefecture, number>;
+    addPrefecture: HasManyAddAssociationMixin<Prefecture, number>;
+    addPrefectures: HasManyAddAssociationsMixin<Prefecture, number>;
+    removePrefecture: HasManyRemoveAssociationMixin<Prefecture, number>;
+    removePrefectures: HasManyRemoveAssociationsMixin<Prefecture, number>;
+    createPrefecture: HasManyCreateAssociationMixin<Prefecture>;
 }

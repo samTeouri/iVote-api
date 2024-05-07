@@ -48,18 +48,17 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(400).json({ errors: errors.array() });
         }
         // Get user register form values from body
-        const { email, phone, password } = req.body;
+        const { email, phone, password, cni, photo, dateNaissance, lieuNaissance, profession } = req.body;
         // Create an instance of user
-        const user = yield User_1.User.build({
+        const user = yield User_1.User.create({
             email: email,
             phone: phone,
             password: yield bcrypt.hash(password, 15),
         });
         const citizenRole = yield Role_1.Role.findOne({ where: { name: 'citizen' } });
-        // Store user in database
-        yield user.save();
         // Set user citizen role
         yield user.addRole(citizenRole);
+        // Create Citizen instance
         return res.status(201).json({ message: 'User registered successfully' });
     }
     catch (error) {
@@ -89,7 +88,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 return res.status(401).json({ error: 'Password is incorrect' });
             }
             // Token signature
-            const token = jwt.sign({ userId: user.id }, process.env.TOKEN_SECRET_KEY);
+            const token = jwt.sign({ user: user }, process.env.TOKEN_SECRET_KEY);
             return res.status(200).json({
                 user: user,
                 _token: token,

@@ -1,17 +1,17 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, Model } from "sequelize";
 import { Role } from "./Role";
 export declare class Permission extends Model {
     id: BigInteger;
     name: string;
     createdAt: Date;
     updatedAt: Date;
-    getRoles: BelongsToManyGetAssociationsMixin<Role>;
-    setRoles: BelongsToManySetAssociationsMixin<Role, number>;
-    hasRole: BelongsToManyHasAssociationMixin<Role, number>;
-    hasRoles: BelongsToManyHasAssociationsMixin<Role, number>;
-    addRole: BelongsToManyAddAssociationMixin<Role, number>;
-    addRoles: BelongsToManyAddAssociationsMixin<Role, number>;
-    removeRole: BelongsToManyRemoveAssociationMixin<Role, number>;
-    removeRoles: BelongsToManyRemoveAssociationsMixin<Role, number>;
-    createRole: BelongsToManyCreateAssociationMixin<Role>;
+    getRoles: HasManyGetAssociationsMixin<Role>;
+    setRoles: HasManySetAssociationsMixin<Role, number>;
+    hasRole: HasManyHasAssociationMixin<Role, number>;
+    hasRoles: HasManyHasAssociationsMixin<Role, number>;
+    addRole: HasManyAddAssociationMixin<Role, number>;
+    addRoles: HasManyAddAssociationsMixin<Role, number>;
+    removeRole: HasManyRemoveAssociationMixin<Role, number>;
+    removeRoles: HasManyRemoveAssociationsMixin<Role, number>;
+    createRole: HasManyCreateAssociationMixin<Role>;
 }

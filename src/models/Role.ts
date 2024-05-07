@@ -1,4 +1,4 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, DataTypes, Model } from 'sequelize';
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/database';
 import { User } from './User';
 import { UserRole } from './UserRole';
@@ -11,25 +11,25 @@ export class Role extends Model {
     declare createdAt: Date;
     declare updatedAt: Date;
 
-    declare getUsers: BelongsToManyGetAssociationsMixin<User>;
-    declare setUsers: BelongsToManySetAssociationsMixin<User, number>;
-    declare hasUser: BelongsToManyHasAssociationMixin<User, number>;
-    declare hasUsers: BelongsToManyHasAssociationsMixin<User, number>;
-    declare addUser: BelongsToManyAddAssociationMixin<User, number>;
-    declare addUsers: BelongsToManyAddAssociationsMixin<User, number>;
-    declare removeUser: BelongsToManyRemoveAssociationMixin<User, number>;
-    declare removeUsers: BelongsToManyRemoveAssociationsMixin<User, number>;
-    declare createUser: BelongsToManyCreateAssociationMixin<User>;
+    declare getUsers: HasManyGetAssociationsMixin<User>;
+    declare setUsers: HasManySetAssociationsMixin<User, number>;
+    declare hasUser: HasManyHasAssociationMixin<User, number>;
+    declare hasUsers: HasManyHasAssociationsMixin<User, number>;
+    declare addUser: HasManyAddAssociationMixin<User, number>;
+    declare addUsers: HasManyAddAssociationsMixin<User, number>;
+    declare removeUser: HasManyRemoveAssociationMixin<User, number>;
+    declare removeUsers: HasManyRemoveAssociationsMixin<User, number>;
+    declare createUser: HasManyCreateAssociationMixin<User>;
 
-    declare getPermissions: BelongsToManyGetAssociationsMixin<Permission>;
-    declare setPermissions: BelongsToManySetAssociationsMixin<Permission, number>;
-    declare hasPermission: BelongsToManyHasAssociationMixin<Permission, number>;
-    declare hasPermissions: BelongsToManyHasAssociationsMixin<Permission, number>;
-    declare addPermission: BelongsToManyAddAssociationMixin<Permission, number>;
-    declare addPermissions: BelongsToManyAddAssociationsMixin<Permission, number>;
-    declare removePermission: BelongsToManyRemoveAssociationMixin<Permission, number>;
-    declare removePermissions: BelongsToManyRemoveAssociationsMixin<Permission, number>;
-    declare createPermission: BelongsToManyCreateAssociationMixin<Permission>;
+    declare getPermissions: HasManyGetAssociationsMixin<Permission>;
+    declare setPermissions: HasManySetAssociationsMixin<Permission, number>;
+    declare hasPermission: HasManyHasAssociationMixin<Permission, number>;
+    declare hasPermissions: HasManyHasAssociationsMixin<Permission, number>;
+    declare addPermission: HasManyAddAssociationMixin<Permission, number>;
+    declare addPermissions: HasManyAddAssociationsMixin<Permission, number>;
+    declare removePermission: HasManyRemoveAssociationMixin<Permission, number>;
+    declare removePermissions: HasManyRemoveAssociationsMixin<Permission, number>;
+    declare createPermission: HasManyCreateAssociationMixin<Permission>;
 }
 
 Role.init(

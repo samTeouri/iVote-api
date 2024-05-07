@@ -1,4 +1,4 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { sequelize } from "../config/database";
 import { Region } from "./Region";
 import { Commune } from "./Commune";
@@ -13,15 +13,15 @@ export class Prefecture extends Model {
     declare setRegion: HasOneSetAssociationMixin<Region, number>;
     declare createRegion: HasOneCreateAssociationMixin<Region>;
 
-    declare getCommune: BelongsToManyGetAssociationsMixin<Commune>;
-    declare setCommunes: BelongsToManySetAssociationsMixin<Commune, number>;
-    declare hasCommune: BelongsToManyHasAssociationMixin<Commune, number>;
-    declare hasCommunes: BelongsToManyHasAssociationsMixin<Commune, number>;
-    declare addCommune: BelongsToManyAddAssociationMixin<Commune, number>;
-    declare addCommunes: BelongsToManyAddAssociationsMixin<Commune, number>;
-    declare removeCommune: BelongsToManyRemoveAssociationMixin<Commune, number>;
-    declare removeCommunes: BelongsToManyRemoveAssociationsMixin<Commune, number>;
-    declare createCommune: BelongsToManyCreateAssociationMixin<Commune>;
+    declare getCommune: HasManyGetAssociationsMixin<Commune>;
+    declare setCommunes: HasManySetAssociationsMixin<Commune, number>;
+    declare hasCommune: HasManyHasAssociationMixin<Commune, number>;
+    declare hasCommunes: HasManyHasAssociationsMixin<Commune, number>;
+    declare addCommune: HasManyAddAssociationMixin<Commune, number>;
+    declare addCommunes: HasManyAddAssociationsMixin<Commune, number>;
+    declare removeCommune: HasManyRemoveAssociationMixin<Commune, number>;
+    declare removeCommunes: HasManyRemoveAssociationsMixin<Commune, number>;
+    declare createCommune: HasManyCreateAssociationMixin<Commune>;
 }
 
 Prefecture.init(

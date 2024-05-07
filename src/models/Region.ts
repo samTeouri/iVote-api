@@ -1,4 +1,4 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { sequelize } from "../config/database";
 import { Prefecture } from "./Prefecture";
 
@@ -8,15 +8,15 @@ export class Region extends Model {
     declare createdAt: Date;
     declare upadtedAt: Date;
 
-    declare getPrefecture: BelongsToManyGetAssociationsMixin<Prefecture>;
-    declare setPrefectures: BelongsToManySetAssociationsMixin<Prefecture, number>;
-    declare hasPrefecture: BelongsToManyHasAssociationMixin<Prefecture, number>;
-    declare hasPrefectures: BelongsToManyHasAssociationsMixin<Prefecture, number>;
-    declare addPrefecture: BelongsToManyAddAssociationMixin<Prefecture, number>;
-    declare addPrefectures: BelongsToManyAddAssociationsMixin<Prefecture, number>;
-    declare removePrefecture: BelongsToManyRemoveAssociationMixin<Prefecture, number>;
-    declare removePrefectures: BelongsToManyRemoveAssociationsMixin<Prefecture, number>;
-    declare createPrefecture: BelongsToManyCreateAssociationMixin<Prefecture>;
+    declare getPrefecture: HasManyGetAssociationsMixin<Prefecture>;
+    declare setPrefectures: HasManySetAssociationsMixin<Prefecture, number>;
+    declare hasPrefecture: HasManyHasAssociationMixin<Prefecture, number>;
+    declare hasPrefectures: HasManyHasAssociationsMixin<Prefecture, number>;
+    declare addPrefecture: HasManyAddAssociationMixin<Prefecture, number>;
+    declare addPrefectures: HasManyAddAssociationsMixin<Prefecture, number>;
+    declare removePrefecture: HasManyRemoveAssociationMixin<Prefecture, number>;
+    declare removePrefectures: HasManyRemoveAssociationsMixin<Prefecture, number>;
+    declare createPrefecture: HasManyCreateAssociationMixin<Prefecture>;
 }
 
 Region.init(

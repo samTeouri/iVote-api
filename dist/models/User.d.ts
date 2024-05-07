@@ -1,4 +1,4 @@
-import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, BelongsToManyCreateAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyHasAssociationMixin, BelongsToManyHasAssociationsMixin, BelongsToManyRemoveAssociationMixin, BelongsToManyRemoveAssociationsMixin, BelongsToManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
+import { HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
 import { Role } from "./Role";
 import { Citoyen } from "./Citoyen";
 export declare class User extends Model {
@@ -11,13 +11,13 @@ export declare class User extends Model {
     getCitoyen: HasOneGetAssociationMixin<Citoyen>;
     setCitoyen: HasOneSetAssociationMixin<Citoyen, number>;
     createCitoyen: HasOneCreateAssociationMixin<Citoyen>;
-    getRoles: BelongsToManyGetAssociationsMixin<Role>;
-    setRoles: BelongsToManySetAssociationsMixin<Role, number>;
-    hasRole: BelongsToManyHasAssociationMixin<Role, number>;
-    hasRoles: BelongsToManyHasAssociationsMixin<Role, number>;
-    addRole: BelongsToManyAddAssociationMixin<Role, number>;
-    addRoles: BelongsToManyAddAssociationsMixin<Role, number>;
-    removeRole: BelongsToManyRemoveAssociationMixin<Role, number>;
-    removeRoles: BelongsToManyRemoveAssociationsMixin<Role, number>;
-    createRole: BelongsToManyCreateAssociationMixin<Role>;
+    getRoles: HasManyGetAssociationsMixin<Role>;
+    setRoles: HasManySetAssociationsMixin<Role, number>;
+    hasRole: HasManyHasAssociationMixin<Role, number>;
+    hasRoles: HasManyHasAssociationsMixin<Role, number>;
+    addRole: HasManyAddAssociationMixin<Role, number>;
+    addRoles: HasManyAddAssociationsMixin<Role, number>;
+    removeRole: HasManyRemoveAssociationMixin<Role, number>;
+    removeRoles: HasManyRemoveAssociationsMixin<Role, number>;
+    createRole: HasManyCreateAssociationMixin<Role>;
 }
