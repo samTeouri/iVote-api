@@ -35,7 +35,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.register = void 0;
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
-const express_validator_1 = require("express-validator");
 const User_1 = require("../models/User");
 const Role_1 = require("../models/Role");
 const AuthService_1 = require("../services/AuthService");
@@ -82,10 +81,7 @@ exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Validate form values and manage errors
-        const errors = (0, express_validator_1.validationResult)(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        requestValidationService.validateRequest(req, res);
         // Get user register form values from body
         const { identifier, password } = req.body;
         // Get user instance using given identifier

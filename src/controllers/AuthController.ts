@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { validationResult } from 'express-validator';
 import { User } from "../models/User";
 import { Role } from "../models/Role";
 import { AuthService } from "../services/AuthService";
@@ -57,10 +56,7 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
     try {
         // Validate form values and manage errors
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        requestValidationService.validateRequest(req, res);
 
         // Get user register form values from body
         const { identifier, password } = req.body;
