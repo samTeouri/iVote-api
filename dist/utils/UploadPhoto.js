@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleFilesUpload = void 0;
+exports.handleSingleUploadFile = void 0;
 const path = __importStar(require("path"));
 const multer_1 = __importDefault(require("multer"));
 const uploadFilePath = path.resolve(__dirname, '../..', 'public/uploads/files');
@@ -45,7 +45,7 @@ const storageFile = multer_1.default.diskStorage({
         fn(null, `${new Date().getTime().toString()}-${file.fieldname}${path.extname(file.originalname)}`);
     },
 });
-const uploadFile = (0, multer_1.default)({
+const upload = (0, multer_1.default)({
     storage: storageFile,
     limits: { fileSize: 5 * 1024 * 1024 },
     fileFilter(req, file, callback) {
@@ -56,16 +56,16 @@ const uploadFile = (0, multer_1.default)({
         }
         callback(new Error('Invalid file type. Only picture file on type PDF, PNG, JPEG and JPG are allowed!'));
     },
-}).any();
-const handleFilesUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+}).single('photo');
+const handleSingleUploadFile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
         uploadFile(req, res, (error) => {
             if (error) {
                 reject(error);
             }
-            resolve({ files: req.files, body: req.body });
+            resolve({ file: req.file, body: req.body });
         });
     });
 });
-exports.handleFilesUpload = handleFilesUpload;
-//# sourceMappingURL=UploadFile.js.map
+exports.handleSingleUploadFile = handleSingleUploadFile;
+//# sourceMappingURL=UploadPhoto.js.map

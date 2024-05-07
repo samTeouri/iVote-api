@@ -24,16 +24,16 @@ const uploadFile = multer({
     
         callback(new Error('Invalid file type. Only picture file on type PDF, PNG, JPEG and JPG are allowed!'));
     },
-}).single('file');
+}).any();
 
-export const handleSingleUploadFile = async (req: Request, res: Response): Promise<any> => {
+export const handleFilesUpload = async (req: Request, res: Response): Promise<any> => {
     return new Promise((resolve, reject): void => {
         uploadFile(req, res, (error) => {
             if (error) {
                 reject(error);
             }
 
-            resolve({ file: req.file, body: req.body });
+            resolve({ files: req.files, body: req.body });
         });
     });
 };

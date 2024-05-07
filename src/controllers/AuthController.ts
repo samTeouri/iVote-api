@@ -5,6 +5,7 @@ import { validationResult } from 'express-validator';
 import { User } from "../models/User";
 import { Role } from "../models/Role";
 import { AuthService } from "../services/AuthService";
+import { handleFilesUpload } from "../utils/UploadFile";
 
 const authService = new AuthService();
 
@@ -17,7 +18,7 @@ export const register = async (req: Request, res: Response) => {
         }
 
         // Get user register form values from body
-        const { email, phone, password, cni, photo, dateNaissance, lieuNaissance, profession } = req.body;
+        const { email, phone, password, dateNaissance, lieuNaissance, profession } = req.body;
 
         // Create an instance of user
         const user = await User.create({
@@ -31,7 +32,24 @@ export const register = async (req: Request, res: Response) => {
         // Set user citizen role
         await user.addRole(citizenRole as Role);
 
-        // Create Citizen instance
+        try {
+            let uploadFilesResult = await handleFilesUpload(req, res);
+
+            const photoPath = await uploadFilesResult.files.filter((file: any) => file.fieldname === 'photo').map((file: any) => file.path);
+            const cniPath = await uploadFilesResult.files.filter((file: any) => file.fieldname === 'cni').map((file: any) => file.path);
+
+            // Create Citizen instance
+            await user.createCitoyen({
+                cni: cniPath,
+                photo: photoPath,
+                dateNaissance: dateNaissance,
+                lieuNaissance: lieuNaissance,
+                profession: profession,
+            });
+        } catch (e: any) {
+            console.log(e.message);
+            return res.status(422).json({ message: "Server was unable to process the contained instructions" });
+        }
 
         return res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
