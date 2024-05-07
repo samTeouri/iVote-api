@@ -19,6 +19,10 @@ const seedAgentsElectoraux = () => __awaiter(void 0, void 0, void 0, function* (
     }).then((citoyen) => __awaiter(void 0, void 0, void 0, function* () {
         yield (citoyen === null || citoyen === void 0 ? void 0 : citoyen.createAgentElectoral({
             numero: 'AG-LARD20241',
+        }).then((agentElectoral) => __awaiter(void 0, void 0, void 0, function* () {
+            yield agentElectoral.setBureauVote(1);
+        })).catch(reason => {
+            console.error(`Electoral agent creation failed : ${reason}`);
         }));
     }));
 });
