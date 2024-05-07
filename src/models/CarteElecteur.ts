@@ -1,7 +1,7 @@
 import { DataTypes, HasOneCreateAssociationMixin, HasOneGetAssociationMixin, HasOneSetAssociationMixin, Model } from "sequelize";
-import { User } from "./User";
+import { Citoyen } from "./Citoyen";
 import { sequelize } from "../config/database";
-import { BureauVote } from "./BureauVote";
+import { AgentElectoral } from "./AgentElectoral";
 
 export class CarteElecteur extends Model {
     declare id: BigInteger;
@@ -10,13 +10,40 @@ export class CarteElecteur extends Model {
     declare createdAt: Date;
     declare upadtedAt: Date;
 
-    declare getUser: HasOneGetAssociationMixin<User>;
-    declare setUser: HasOneSetAssociationMixin<User, number>;
-    declare createUser: HasOneCreateAssociationMixin<User>;
+    declare getCitoyen: HasOneGetAssociationMixin<Citoyen>;
+    declare setCitoyen: HasOneSetAssociationMixin<Citoyen, number>;
+    declare createCitoyen: HasOneCreateAssociationMixin<Citoyen>;
 
-    declare getCarteElecteur: HasOneGetAssociationMixin<CarteElecteur>;
-    declare setCarteElecteur: HasOneSetAssociationMixin<CarteElecteur, number>;
-    declare createCarteElecteur: HasOneCreateAssociationMixin<CarteElecteur>;
+    declare getAgentElectoral: HasOneGetAssociationMixin<AgentElectoral>;
+    declare setAgentElectoral: HasOneSetAssociationMixin<AgentElectoral, number>;
+    declare createAgentElectoral: HasOneCreateAssociationMixin<AgentElectoral>;
+
+    // Function for creating electoral card number
+    async createNumber(): Promise<string|null> {
+        let i = 1;
+        let numero: string;
+        await this.getCitoyen()
+            .then(async (citoyen) => {
+                while (true) {
+                    numero = citoyen.nom.slice(0, 3) + citoyen.prenom[0] + new Date().getFullYear() + i.toString();
+                    try {
+                        const citoyen = await Citoyen.findOne({ where: { numero: numero } });
+                        if (citoyen) {
+                            i++;
+                            continue;
+                        }
+                        return numero;
+                    } catch (error) {
+                        throw error;
+                    }
+                }
+            })
+            .catch((reason: any) => {
+                console.error(`Error while getting citizen instance : ${reason}`);
+                throw reason;
+            });
+        return null;
+    }
 }
 
 CarteElecteur.init(
@@ -29,6 +56,7 @@ CarteElecteur.init(
         numero: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: true,
         },
         estActive: {
             type: DataTypes.BOOLEAN,
