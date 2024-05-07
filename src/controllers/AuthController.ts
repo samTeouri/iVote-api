@@ -6,19 +6,18 @@ import { User } from "../models/User";
 import { Role } from "../models/Role";
 import { AuthService } from "../services/AuthService";
 import { handleFilesUpload } from "../utils/UploadFile";
+import { RequestValidationService } from "../services/RequestValidationService";
 
 const authService = new AuthService();
+const requestValidationService = new RequestValidationService();
 
 export const register = async (req: Request, res: Response) => {
     try {
         // Validate form values and manage errors
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        requestValidationService.validateRequest(req, res);
 
         // Get user register form values from body
-        const { email, phone, password, dateNaissance, lieuNaissance, profession } = req.body;
+        const { nom, prenom, email, phone, password, dateNaissance, lieuNaissance, profession } = req.body;
 
         // Create an instance of user
         const user = await User.create({
@@ -32,24 +31,21 @@ export const register = async (req: Request, res: Response) => {
         // Set user citizen role
         await user.addRole(citizenRole as Role);
 
-        try {
-            let uploadFilesResult = await handleFilesUpload(req, res);
+        let uploadFilesResult = await handleFilesUpload(req, res);
 
-            const photoPath = await uploadFilesResult.files.filter((file: any) => file.fieldname === 'photo').map((file: any) => file.path);
-            const cniPath = await uploadFilesResult.files.filter((file: any) => file.fieldname === 'cni').map((file: any) => file.path);
+        const photoPath = await uploadFilesResult.files.filter((file: any) => file.fieldname === 'photo').map((file: any) => file.path);
+        const cniPath = await uploadFilesResult.files.filter((file: any) => file.fieldname === 'cni').map((file: any) => file.path);
 
-            // Create Citizen instance
-            await user.createCitoyen({
-                cni: cniPath,
-                photo: photoPath,
-                dateNaissance: dateNaissance,
-                lieuNaissance: lieuNaissance,
-                profession: profession,
-            });
-        } catch (e: any) {
-            console.log(e.message);
-            return res.status(422).json({ message: "Server was unable to process the contained instructions" });
-        }
+        // Create Citizen instance
+        await user.createCitoyen({
+            nom: nom,
+            prenom: prenom,
+            cni: cniPath,
+            photo: photoPath,
+            dateNaissance: dateNaissance,
+            lieuNaissance: lieuNaissance,
+            profession: profession,
+        });
 
         return res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -68,13 +64,9 @@ export const login = async (req: Request, res: Response) => {
 
         // Get user register form values from body
         const { identifier, password } = req.body;
-        
+
         // Get user instance using given identifier
         const user = await authService.getUserByIdentifier(identifier);
-
-        if (!user?.hasRole(1)) {
-            return res.status(403).json({ error: 'You are not authorized to connect via mobile' });
-        }
 
         // User with given identifier exist
         if (user instanceof User) {

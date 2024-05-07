@@ -40,16 +40,15 @@ const User_1 = require("../models/User");
 const Role_1 = require("../models/Role");
 const AuthService_1 = require("../services/AuthService");
 const UploadFile_1 = require("../utils/UploadFile");
+const RequestValidationService_1 = require("../services/RequestValidationService");
 const authService = new AuthService_1.AuthService();
+const requestValidationService = new RequestValidationService_1.RequestValidationService();
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Validate form values and manage errors
-        const errors = (0, express_validator_1.validationResult)(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        requestValidationService.validateRequest(req, res);
         // Get user register form values from body
-        const { email, phone, password, dateNaissance, lieuNaissance, profession } = req.body;
+        const { nom, prenom, email, phone, password, dateNaissance, lieuNaissance, profession } = req.body;
         // Create an instance of user
         const user = yield User_1.User.create({
             email: email,
@@ -59,23 +58,19 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const citizenRole = yield Role_1.Role.findOne({ where: { name: 'citizen' } });
         // Set user citizen role
         yield user.addRole(citizenRole);
-        try {
-            let uploadFilesResult = yield (0, UploadFile_1.handleFilesUpload)(req, res);
-            const photoPath = yield uploadFilesResult.files.filter((file) => file.fieldname === 'photo').map((file) => file.path);
-            const cniPath = yield uploadFilesResult.files.filter((file) => file.fieldname === 'cni').map((file) => file.path);
-            // Create Citizen instance
-            yield user.createCitoyen({
-                cni: cniPath,
-                photo: photoPath,
-                dateNaissance: dateNaissance,
-                lieuNaissance: lieuNaissance,
-                profession: profession,
-            });
-        }
-        catch (e) {
-            console.log(e.message);
-            return res.status(422).json({ message: "Server was unable to process the contained instructions" });
-        }
+        let uploadFilesResult = yield (0, UploadFile_1.handleFilesUpload)(req, res);
+        const photoPath = yield uploadFilesResult.files.filter((file) => file.fieldname === 'photo').map((file) => file.path);
+        const cniPath = yield uploadFilesResult.files.filter((file) => file.fieldname === 'cni').map((file) => file.path);
+        // Create Citizen instance
+        yield user.createCitoyen({
+            nom: nom,
+            prenom: prenom,
+            cni: cniPath,
+            photo: photoPath,
+            dateNaissance: dateNaissance,
+            lieuNaissance: lieuNaissance,
+            profession: profession,
+        });
         return res.status(201).json({ message: 'User registered successfully' });
     }
     catch (error) {
@@ -95,9 +90,6 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { identifier, password } = req.body;
         // Get user instance using given identifier
         const user = yield authService.getUserByIdentifier(identifier);
-        if (!(user === null || user === void 0 ? void 0 : user.hasRole(1))) {
-            return res.status(403).json({ error: 'You are not authorized to connect via mobile' });
-        }
         // User with given identifier exist
         if (user instanceof User_1.User) {
             // Check if given password is correct
